@@ -6,12 +6,26 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class VinylController {
+class VinylController extends AbstractController {
 
     #[Route('/home')]
     public function homepage() : Response {
         //die('SF6 Vinyl');
-        return new Response('Hello');
+        $tracks = [
+            ['song' => 'Gangsta\'s Paradise', 'artist' => 'Coolio'],
+            ['song' => 'Waterfalls', 'artist' => 'TLC'],
+            ['song' => 'Creep', 'artist' => 'Radiohead'],
+            ['song' => 'Kiss from a Rose', 'artist' => 'Seal'],
+            ['song' => 'On Bended Knee', 'artist' => 'Boyz II Men'],
+            ['song' => 'Fantasy', 'artist' => 'Mariah Carey'],
+        ];
+
+        //return new Response('Hello');
+        return $this->render('vinyl/homepage.html.twig', [
+            'title' => 'Welcome to Vinyl',
+            'tracks' => $tracks
+        ]);
+        
     }
 
     #[Route('/browse/{slug}')]
