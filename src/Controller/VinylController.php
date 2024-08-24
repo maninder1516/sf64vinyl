@@ -20,6 +20,8 @@ class VinylController extends AbstractController {
             ['song' => 'Fantasy', 'artist' => 'Mariah Carey'],
         ];
 
+       // dd($tracks); // Dump and Die
+
         //return new Response('Hello');
         return $this->render('vinyl/homepage.html.twig', [
             'title' => 'Welcome to Vinyl',
@@ -33,7 +35,11 @@ class VinylController extends AbstractController {
         $title = str_replace('-', ' ', $slug);
         //$title = ucfirst(str_replace('-', ' ', $slug))->title(true);
 
-        return new Response('Genre: '.$title);
+        $genre = $slug ? ucfirst(str_replace('-', ' ', $slug)) : null;
+
+        return $this->render('vinyl/browse.html.twig', [           
+            'genre' => $genre
+        ]);
     }
 
 }
