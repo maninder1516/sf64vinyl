@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class VinylController extends AbstractController {
 
-    #[Route('/home')]
+    #[Route('/', name:'app_homepage')]
     public function homepage() : Response {
         //die('SF6 Vinyl');
         $tracks = [
@@ -30,7 +30,7 @@ class VinylController extends AbstractController {
         
     }
 
-    #[Route('/browse/{slug}')]
+    #[Route('/browse/{slug}', name:'app_browse')]
     public function browse(string $slug = null) : Response {
         $title = str_replace('-', ' ', $slug);
         //$title = ucfirst(str_replace('-', ' ', $slug))->title(true);
